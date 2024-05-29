@@ -29,5 +29,25 @@ router.get(`/:id`, (req, res) => {
     });
 });
 
+router.post(`/:id/delete`, (req, res) => {
+    Movie.findByIdAndDelete(req.params.id).then(() => res.redirect(`/movies`))
+});
+
+router.get(`/:id/edit`, (req, res) => {
+    Promise.all([
+        Movie.findById(req.params.id),
+        Celebrity.find()
+    ])
+
+    .then(([movie, celebrities]) => {
+        res.render(`movies/edit-movie`, { movie, celebrities });
+    });
+});
+
+router.post(`/:id/edit`, (req, res) => {
+    const { title, genre, plot, cast } = req.body;
+    Movie.findByIdAndUpdate(req.params.id, { title, genre, plot, cast }, { new: true })
+    .then(() => res.redirect(`/movies/${req.params.id}`));
+});
 
 module.exports = router;
