@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Celebrity = require("../models/celebritie.model");
+const Celebrity = require("../models/Celebrity.model");
 
 router.get("/", (req, res) => {
     console.log('testing...')

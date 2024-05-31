@@ -1,4 +1,5 @@
 //  Add your code here
+// Destructuring:
 const { Schema, model } = require("mongoose");
 
 const movieSchema = new Schema(
@@ -22,6 +23,6 @@ const movieSchema = new Schema(
 
 
 
-const movie = model("movie", movieSchema);
+const movie = model("Movie", movieSchema);
 
 module.exports = movie;
